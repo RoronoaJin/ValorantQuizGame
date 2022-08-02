@@ -178,7 +178,7 @@ startGame = () => {
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem("currentScore", score);
-        return window.location.assign('/end.html')
+        return window.location.assign('https://roronoajin.github.io/ValorantQuizGame/end')
     }
 
     questionCounter++
