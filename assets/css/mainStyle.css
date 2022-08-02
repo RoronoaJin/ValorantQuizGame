@@ -1,0 +1,207 @@
+@font-face {
+    font-family: Valorant;
+    src: url("../fonts/ValorantFont.ttf");
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    background-color: black;
+    font-family: Valorant;
+    overflow: auto;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* ///////////////////////// MARGIN & PADDING ///////////////////////// */
+.low-margin{
+    margin: 0.5em;
+}
+
+.margin-bottom-two{
+    margin-bottom: 2em;
+}
+
+.margin-bottom-five{
+    margin-bottom: 5em;
+}
+
+.margin-top-two{
+    margin-top: 2em;
+}
+
+.margin-top-five{
+    margin-top: 5em;
+}
+
+.low-padding{
+    padding: 1em;
+}
+/* ///////////////////////// BUTTONS ///////////////////////// */
+.btn{
+    width: 250px;
+    height: 50px;
+
+    border: none;
+    border-radius: 2px;
+
+    color: #ECE8E1;
+
+    font-family: Valorant;
+
+    background: linear-gradient(to left, #FF4655 50%, black 50%);
+    background-size: 200%;
+    background-position: right;
+    transition: background-position 0.5s ease-in-out;
+}
+
+.btn-small{
+    width: 100px;
+    height: 50px;
+}
+
+.btn:hover{
+    cursor: pointer;
+    background-position: left;
+}
+
+/* ///////////////////////// TYPOGRAPHY ///////////////////////// */
+.background-white{
+    background-color: #ECE8E1;
+}
+
+.background-red{
+    background-color: #EF4958;
+}
+
+.min-height-fifty{
+    min-height: 50vh;
+}
+
+.min-height-heighty{
+    min-height: 80vh;
+}
+
+.font-size-two{
+    font-size: 2em;
+}
+
+.text-centered{
+    text-align: center;
+}
+
+.unselectable{
+    user-select: none;
+}
+
+/* ///////////////////////// FLEX ELEMENTS ///////////////////////// */
+.flex-container-column-nowrap{
+    display: flex;
+    flex-flow: column nowrap;
+}
+
+.flex-container-column-wrap{
+    display: flex;
+    flex-flow: column wrap;
+}
+
+.flex-container-row-nowrap{
+    display: flex;
+    flex-flow: row nowrap;
+}
+
+.flex-container-row-wrap{
+    display: flex;
+    flex-flow: row wrap;
+}
+
+.align-center{
+    align-items: center;
+}
+
+.justify-evenly{
+    justify-content: space-evenly;
+}
+
+.justify-between{
+    justify-content: space-between;
+}
+
+/* ///////////////////////// HEADER ///////////////////////// */
+.header-logo{
+    width: 50px;
+}
+
+.header-title{
+    font-size: 1.5rem;
+}
+
+/* ///////////////////////// HOME PAGE MAIN ///////////////////////// */
+.main-divisor-bar{
+    height: 3%;
+    background-color: black;
+}
+
+.main-paragraph{
+    max-width: 90vw;
+}
+
+.rules-divisor-bar{
+    height: 1px;
+    background-color: black;
+}
+
+ul{
+    list-style: circle;
+    margin-top: 0;
+}
+
+ul li{
+    font-family: Arial, Georgia, 'Times New Roman', Times, serif;
+    font-weight: 600;
+    color: rgb(124, 124, 124);
+}
+
+/* ////////////////////////// FOOTER ///////////////////////// */
+.footer-divisor-bar{
+    color: white;
+    background-color: #292929;
+
+    font-family: monospace;
+    font-weight: bold;
+
+    height: 5vh;
+}
+
+a:link{
+    text-decoration: none;
+}
+
+a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-container{
+    color: white;
+    background-color: black;
+
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.footer-logo{
+    width: 100px;
+}
+
+/* ////////////////////////// RESULT CONTAINER ///////////////////////// */
+.result-container{
+    display: none;
+
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+
+    border-radius: 5px;
+}

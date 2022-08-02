@@ -1,2 +1,1 @@
-# ValorantQuizGame
-Quiz sul videogioco Valorant, sviluppato da Riot Games
+Quiz Game basato sul videogioco Valorant sviluppato da Riot Games

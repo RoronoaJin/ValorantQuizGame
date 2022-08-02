@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valorant Quiz Game</title>
+    <link rel="stylesheet" href="./assets/css/mainStyle.css">
+</head>
+<body>
+    <header>
+        <div id="header-bar" class="flex-container-row-nowrap align-center background-red">
+            <img id="val-logo" class="header-logo unselectable" src="./assets/imgs/VAL.png">
+            <p id="val-logo-text" class="header-title unselectable">VALORANT QUIZ GAME</p>
+        </div>
+    </header>
+    <main>
+        <div class="main-divisor-bar"> ‍</div>
+        <div id="main-container" class="flex-container-column-nowrap align-center background-white min-height-fifty">
+            <img id="main-img" class="unselectable" src="./assets/imgs/WALLPAPER.jpg">
+            <p class="main-paragraph">Metti alla prova le tue conoscenze in questo simpatico e breve quiz sul videgioco</p>
+            <p class="main-paragraph">Premi il pulsante che segue per iniziare</p>
+            <button id="start-btn" class="btn margin-bottom-five margin-top-two unselectable" onClick="window.location.assign('/questions.html')">START</button>
+        </div>
+        <div class="rules-divisor-bar"> ‍</div>
+        <div id="rules-container" class="flex-container-column-nowrap background-white">
+            <p class="low-margin">REGOLAMENTO</p>
+            <ul>
+                <li class="low-margin">Rispondi correttamente a 6 domande su 10 per passare il quiz</li>
+                <li class="low-margin">Le domande si basano su meccaniche di gioco, lore, patch e VCT</li>
+                <li class="low-margin">Nessun aiuto</li>
+                <li class="low-margin">Yoru</li>
+            </ul>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-divisor-bar flex-container-row-wrap align-center justify-evenly text-centered">
+            <p>SVILUPPATO DA <a href="https://github.com/RoronoaJin">GABRIELE AFFRONTO</a>‍</p>
+        </div>
+        <div id="footer-container" class="footer-container flex-container-column-wrap align-center low-margin text-centered">
+            <p>Questo gioco non è in alcun modo associato al produttore originale, tutti i diritti sono riservati a Riot Games&#169</p>
+            <img id="riot-logo" class="footer-logo" src="./assets/imgs/RIOT.png">
+        </div>
+    </footer>
+</body>
+</html>
