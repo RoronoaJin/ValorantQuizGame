@@ -3,11 +3,11 @@ const choices = Array.from(document.querySelectorAll('#choice-text'));
 const questionCount = document.querySelector('#question-count');
 const timeH = document.querySelector('#timer');
 
-let currentQuestion = {}
-let acceptingAnswers = true
-let availableQuestions = []
-let questionCounter = 0
-let score = 0
+let currentQuestion = {};
+let acceptingAnswers = true;
+let availableQuestions = [];
+let questionCounter = 0;
+let score = 0;
 let timeSecond = 15;
 
 let questions = [
@@ -166,40 +166,55 @@ let questions = [
     },
 ]
 
-const MAX_QUESTIONS = 9
-const SCORE_POINT = 1
-
-startGame = () => {
-    questionCounter = 0
-    availableQuestions =[...questions]
-    score = 0
-    getNewQuestion()
-}
+const MAX_QUESTIONS = 9;
+const SCORE_POINT = 1;
 
 getNewQuestion = () => {
     if(availableQuestions.length === 0 || questionCounter > MAX_QUESTIONS) {
         localStorage.setItem("currentScore", score);
-        return window.location.assign('https://roronoajin.github.io/ValorantQuizGame/end')
+        return window.location.assign('https://roronoajin.github.io/ValorantQuizGame/end');
     }
 
-    questionCounter++
+    questionCounter++;
 
-    questionCount.innerText = `Domanda ${questionCounter}/10`
+    questionCount.innerText = `Domanda ${questionCounter}/10`;
 
-    const questionIndex = Math.floor(Math.random() * availableQuestions.length)
-    currentQuestion = availableQuestions[questionIndex]
-    question.innerText = currentQuestion.question
+    const questionIndex = Math.floor(Math.random() * availableQuestions.length);
+    currentQuestion = availableQuestions[questionIndex];
+    question.innerText = currentQuestion.question;
 
     choices.forEach(choice => {
-        const number = choice.dataset['number']
-        choice.innerText = currentQuestion['choice' + number]
+        const number = choice.dataset['number'];
+        choice.innerText = currentQuestion['choice' + number];
     })
 
-    availableQuestions.splice(questionIndex, 1)
+    availableQuestions.splice(questionIndex, 1);
 
-    acceptingAnswers = true
+    acceptingAnswers = true;
 
-    timer()
+    timer();
+}
+
+incrementScore = num => {
+    score += num;
+}
+
+function nextQuestion () {
+    hideResult();
+    timeSecond = 15;
+    timeH.innerText = '00:15';
+    getNewQuestion();
+}
+
+function showResult () {
+    document.getElementById('explanation').innerText = currentQuestion.explanation;
+    document.getElementById('img-container').style.display = "none";
+    document.getElementById('result-container').style.display = "block";
+}
+
+function hideResult () {
+    document.getElementById('result-container').style.display = "none";
+    document.getElementById('img-container').style.display = "block";
 }
 
 choices.forEach(choice => {
@@ -208,78 +223,60 @@ choices.forEach(choice => {
 
         acceptingAnswers = false;
         const selectedChoice = e.target;
-        const selectedAnswer = selectedChoice.dataset['number']
+        const selectedAnswer = selectedChoice.dataset['number'];
 
-        let correctAnswer = currentQuestion.answer
+        let correctAnswer = currentQuestion.answer;
 
-        clearInterval(countDown)
+        clearInterval(countDown);
 
         if(selectedAnswer == correctAnswer){
-            incrementScore(SCORE_POINT)
-            document.getElementById('result').innerText = 'Corretto'
-            showResult()
+            incrementScore(SCORE_POINT);
+            document.getElementById('result').innerText = 'Corretto';
+            showResult();
         }
         else{
-            document.getElementById('result').innerText = 'Errato'
-            showResult()
+            document.getElementById('result').innerText = 'Errato';
+            showResult();
         }
     })
 })
 
-incrementScore = num => {
-    score += num;
-}
-
-function nextQuestion () {
-    hideResult()
-    timeSecond = 15
-    getNewQuestion()
-}
-
-function showResult () {
-    document.getElementById('explanation').innerText = currentQuestion.explanation
-    document.getElementById('img-container').style.display = "none"
-    document.getElementById('result-container').style.display = "block"
-}
-
-function hideResult () {
-    document.getElementById('result-container').style.display = "none"
-    document.getElementById('img-container').style.display = "block"
-}
-
 /* ////////////////////////// TIMER ///////////////////////// */
+let countDown
 
+function displayTime(second) {
+    const min = Math.floor(second / 60);
+    const sec = Math.floor(second % 60);
+    timeH.innerHTML = `${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}`;
+}
+    
+function endCount() {
+    clearInterval(countDown);  
+    acceptingAnswers = false;
+    document.getElementById('result').innerText = 'Tempo scaduto';
+    showResult();
+}
 
+displayTime(timeSecond);
 
-    function displayTime(second) {
-        const min = Math.floor(second / 60);
-        const sec = Math.floor(second % 60);
-        timeH.innerHTML = `${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}`;
-    }
-      
-      function endCount() {
-        clearInterval(countDown);  
-        acceptingAnswers = false;
-        document.getElementById('result').innerText = 'Tempo scaduto'
-        showResult()
-    }
+function timer(){
+    countDown = setInterval(() => {
+        timeSecond--;
+        displayTime(timeSecond);
+        if (timeSecond == 0) {
+            endCount();
+        }
+    }, 1000);
+}
+/* //////////////////////////////////////////////////////// */
 
-    displayTime(timeSecond);
-
-    let countDown
-
-    function timer(){
-        countDown = setInterval(() => {
-            timeSecond--;
-            displayTime(timeSecond);
-            if (timeSecond == 0) {
-              endCount();
-            }
-        }, 1000);
-    }
-
-
-
+/* //////////////////////// STARTER /////////////////////// */
+startGame = () => {
+    questionCounter = 0;
+    availableQuestions =[...questions];
+    score = 0;
+    getNewQuestion();
+}
 /* //////////////////////////////////////////////////////// */
 
 startGame()
