@@ -1,13 +1,14 @@
 const question = document.querySelector('#question');
 const choices = Array.from(document.querySelectorAll('#choice-text'));
 const questionCount = document.querySelector('#question-count');
-// const timeH = document.querySelector('#timer');
+const timeH = document.querySelector('#timer');
 
 let currentQuestion = {}
 let acceptingAnswers = true
 let availableQuestions = []
 let questionCounter = 0
 let score = 0
+let timeSecond = 15;
 
 let questions = [
     {
@@ -197,6 +198,8 @@ getNewQuestion = () => {
     availableQuestions.splice(questionIndex, 1)
 
     acceptingAnswers = true
+
+    timer()
 }
 
 choices.forEach(choice => {
@@ -209,16 +212,13 @@ choices.forEach(choice => {
 
         let correctAnswer = currentQuestion.answer
 
+        clearInterval(countDown)
+
         if(selectedAnswer == correctAnswer){
             incrementScore(SCORE_POINT)
             document.getElementById('result').innerText = 'Corretto'
             showResult()
         }
-        // else if(timeH.innerHTML === "00:00")
-        // {
-        //     document.getElementById('result').innerText = 'Tempo scaduto'
-        //     showResult()
-        // }
         else{
             document.getElementById('result').innerText = 'Errato'
             showResult()
@@ -230,49 +230,55 @@ incrementScore = num => {
     score += num;
 }
 
-nextQuestion = () =>{
+function nextQuestion () {
     hideResult()
+    timeSecond = 15
     getNewQuestion()
-    // timer()
 }
 
-showResult = () =>{
+function showResult () {
     document.getElementById('explanation').innerText = currentQuestion.explanation
     document.getElementById('img-container').style.display = "none"
     document.getElementById('result-container').style.display = "block"
 }
 
-hideResult = () =>{
+function hideResult () {
     document.getElementById('result-container').style.display = "none"
     document.getElementById('img-container').style.display = "block"
 }
 
 /* ////////////////////////// TIMER ///////////////////////// */
 
-// timer = () =>{
-//     let timeSecond = 10;
-    
-//     displayTime(timeSecond);
-    
-//     const countDown = setInterval(() => {
-//       timeSecond--;
-//       displayTime(timeSecond);
-//       if (timeSecond == 0 || timeSecond < 1) {
-//         endCount();
-//         clearInterval(countDown);
-//       }
-//     }, 1000);
-    
-//     function displayTime(second) {
-//       const min = Math.floor(second / 60);
-//       const sec = Math.floor(second % 60);
-//       timeH.innerHTML = `${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}`;
-//     }
-    
-//     function endCount() {
-//       timeH.innerHTML = "00:00";
-//     }
-// }
+
+
+    function displayTime(second) {
+        const min = Math.floor(second / 60);
+        const sec = Math.floor(second % 60);
+        timeH.innerHTML = `${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}`;
+    }
+      
+      function endCount() {
+        clearInterval(countDown);  
+        acceptingAnswers = false;
+        document.getElementById('result').innerText = 'Tempo scaduto'
+        showResult()
+    }
+
+    displayTime(timeSecond);
+
+    let countDown
+
+    function timer(){
+        countDown = setInterval(() => {
+            timeSecond--;
+            displayTime(timeSecond);
+            if (timeSecond == 0) {
+              endCount();
+            }
+        }, 1000);
+    }
+
+
 
 /* //////////////////////////////////////////////////////// */
 
